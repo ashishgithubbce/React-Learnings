@@ -3,7 +3,7 @@ const heading = React.createElement(
   { className: "heading", id: "heading" },
   "Hello World in React.....!!"
 );
-//it will return an React object with ojject as props and this is an react element and this react object become html that browser understand.
+//it will return an React object with object as props and this is an react element, this react object become html that the browser understand.
 //3rd argument is h1's child element
 const root = ReactDOM.createRoot(document.getElementById("root2"));
 root.render(heading); //injecting elememt insisde root elememt and the purpose of render method to append the react element into the DOM tree . Everything will be render inside this root and everything in root will be replaced by heading.
