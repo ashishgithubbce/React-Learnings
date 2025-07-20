@@ -2,11 +2,10 @@
   "name": "react-lec_01",
   "version": "1.0.0",
   "description": "this is first react lecture",
-  
   "scripts": {
     "test": "jest",
-    "start":"parcel index.html",
-    "build":"parcel build index.html"
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
   },
   "repository": {
     "type": "git",
@@ -26,8 +25,11 @@
   },
   "dependencies": {
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "react-router": "^7.7.0",
+    "react-router-dom": "^6.30.1"
   },
-  "browserslist":["last 2 version"]
+  "browserslist": [
+    "last 2 version"
+  ]
 }
- 
