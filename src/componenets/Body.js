@@ -1,11 +1,15 @@
 import RestaurantCard from "./RestaurantCard";
 import { resData } from "../utils/mockData";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
+import useOnlineOffline from "../utils/useOnlineOffline"; // Custom hook to check online/offline status
+import userContext from "../utils/UserContext";
 const Body = () => {
   const [data, setData] = useState([]);
   const [resdata, setresData] = useState([]);
   const [topRated, setTopRated] = useState(false);
+  const { loggedInUser, setUsername, userName } = useContext(userContext);
   const filterRestaurant = () => {
     setTopRated(!topRated);
     const filterData = data.filter((res) => res.info.avgRating > 4.1);
@@ -67,15 +71,17 @@ const Body = () => {
     setresData(filteredData);
   };
   //conditional rendering
+  const isOnline = useOnlineOffline(); // Using the custom hook to check online/offline status
+  if (!isOnline) return <h1>Offline, Please check your internet connection</h1>;
   return data.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="body-container">
-      <div className="searchCntainer">
+      <div className="flex justify-between items-center mx-1 my-2 p-2">
         <input
           type="search"
-          className="search"
-          placeholder="Search Restaurant.."
+          className="border-2 border-blue-300 border-solid p-2 rounded-lg w-2/5"
+          placeholder="Search Restaurant..."
           onChange={handleSearch}
           // onChange={(e) => {
           //   const searchText = e.target.value;
@@ -86,18 +92,32 @@ const Body = () => {
           // }
           // }
         ></input>
+        <input
+          className="border p-1 rounded-lg"
+          onChange={(e) => {
+            setUsername(e.target.value);
+          }}
+        ></input>
         <div className="filter">
-          <button
-            className={!topRated ? "filter-btn" : "reset-btn"}
+          <button 
+            className={
+              !topRated
+                ? "bg-green-200 border-2 font-semibold border-gray-400 rounded-lg p-2 text-blue-600 text-shadow-blue-500 "
+                : "bg-red-300 border-2 border-gray-400 rounded-lg p-2 mr-3 font-bold  text-blue-600 "
+            }
             onClick={!topRated ? filterRestaurant : resetData}
           >
-            {topRated ? "Reset" : "Top Rated Restaurant"}
+            {topRated ? "Reset" : "Top-Rated Restaurants"}
           </button>
         </div>
       </div>
-      <div className="restaurant-conatiner">
+      <div className="flex flex-wrap">
         {resdata.map((res) => {
-          return <RestaurantCard key={res.info.id} resData={res} />;
+          return (
+            //<Link key={res.info.id} to={"/restaurants/" + res.info.id}>
+            <RestaurantCard key={res.info.id} resData={res} />
+            //</Link>
+          );
         })}
       </div>
     </div>
