@@ -12,7 +12,7 @@ const Header = () => {
   const isOnline = useOnlineOffline(); // Using the custom hook to check online/offline status
   const { loggedInUser } = useContext(UserContext);
   const cartItems = useSelector((store) => store.cart.items); // Accessing cart state from Redux store and we are subscribing to the cart slice of the Redux store using useSelector hook from react-redux
-  console.log(cartItems);
+
   return (
     <div className="flex justify-between bg-blue-300 shadow-lg ">
       <div className="logo-container">

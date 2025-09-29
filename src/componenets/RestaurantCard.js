@@ -6,9 +6,14 @@ const RestaurantCard = ({ resData }) => {
   const { name, avgRating, cuisines, cloudinaryImageId } = resData.info;
   const isOpen = resData.info.availability.opened;
   const deliveryTime = resData.info.sla.deliveryTime + " mins";
+  console.log("Res data");
+  console.log(resData);
 
   return (
-    <div className="w-80 m-2 p-6 border-1 rounded-md border-blue-600 bg-gray-200 hover:bg-green-50 hover:pointer-coarse:">
+    <div
+      className="w-80 m-2 p-6 border-1 rounded-md border-blue-600 bg-gray-200 hover:bg-green-50 hover:pointer-coarse:"
+      data-testid="res-card"
+    >
       <Link to={"/restaurants/" + resData.info.id}>
         <img
           className="border-2 rounded-sm border-orange-500  font-bold"

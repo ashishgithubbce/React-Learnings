@@ -1,7 +1,7 @@
 import RestaurantCard from "./RestaurantCard";
 import { resData } from "../utils/mockData";
 import { useEffect, useState, useContext } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import useOnlineOffline from "../utils/useOnlineOffline"; // Custom hook to check online/offline status
 import userContext from "../utils/UserContext";
@@ -52,10 +52,8 @@ const Body = () => {
       "https://cors-anywhere.herokuapp.com/https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.4392141&lng=78.3922572&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
-    console.log(
-      json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants[0]
-        .info.id
-    );
+    //console.log("json data");
+    //console.log(json);
     setData(
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
@@ -73,7 +71,9 @@ const Body = () => {
   //conditional rendering
   const isOnline = useOnlineOffline(); // Using the custom hook to check online/offline status
   if (!isOnline) return <h1>Offline, Please check your internet connection</h1>;
-  return data.length === 0 ? (
+  console.log("Body Rendered ");
+  console.log(data.length);
+  return data?.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="body-container">
@@ -81,7 +81,8 @@ const Body = () => {
         <input
           type="search"
           className="border-2 border-blue-300 border-solid p-2 rounded-lg w-2/5"
-          placeholder="Search Restaurant..."
+          placeholder="Search"
+          data-testid="search-input"
           onChange={handleSearch}
           // onChange={(e) => {
           //   const searchText = e.target.value;
@@ -99,7 +100,7 @@ const Body = () => {
           }}
         ></input>
         <div className="filter">
-          <button 
+          <button
             className={
               !topRated
                 ? "bg-green-200 border-2 font-semibold border-gray-400 rounded-lg p-2 text-blue-600 text-shadow-blue-500 "

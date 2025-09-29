@@ -46,7 +46,7 @@ const Cart = () => {
       </div>
 
       {cartItems.map((item, index) => (
-        <div key={index}>
+        <div key={index} data-testid="cart-items">
           <ul>
             <li className="text-lg font-medium text-gray-800 my-2 border-1 border-amber-100 p-2 rounded-md shadow-sm">
               {item?.card?.info?.itemAttribute?.vegClassifier === "VEG"

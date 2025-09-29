@@ -37,6 +37,7 @@ const RestaurantCategory = ({ data, handleToggleOpen, isOpen, index }) => {
             <div
               key={item?.card?.info?.id}
               className="border-b border-gray-300 py-4 flex justify-between gap-4"
+              data-testid="food-items"
             >
               {/* Left Section (Text Content) */}
               <div className="flex-1">

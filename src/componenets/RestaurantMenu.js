@@ -13,9 +13,9 @@ function findMenuItemsList(resMenu) {
       card?.card?.card?.["@type"] ===
       "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
   );
-  console.log("Categories:", categories); // Debugging line to check the structure
+  //console.log("Categories:", categories); // Debugging line to check the structure
   const menuItemsList2 = categories?.map((category) => category.title);
-  console.log("Menu Items List:", menuItemsList); // Debugging line to check the structure
+  //console.log("Menu Items List:", menuItemsList); // Debugging line to check the structure
   const menuItems = menuItemsList?.find((card) => card?.card?.card?.itemCards)
     ?.card?.card?.itemCards;
   return menuItems;
@@ -28,11 +28,11 @@ const getMenuItems = (resMenu) => {
       card?.card?.card?.["@type"] ===
       "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
   );
-  console.log("Categories : ", categories); // Debugging line to check the
+  //console.log("Categories : ", categories); // Debugging line to check the
   const menuItemsList2 = categories?.map(
     (category) => category?.card?.card?.title
   );
-  console.log("Menu Items List:", menuItemsList2); // Debugging line to check the structure
+  //console.log("Menu Items List:", menuItemsList2); // Debugging line to check the structure
   return categories;
 };
 const RestaurantMenu = () => {
@@ -42,7 +42,7 @@ const RestaurantMenu = () => {
       setItemIndex(-1); // Close if the same index is clicked
       return;
     }
-    console.log("Toggling index:", index);
+    //console.log("Toggling index:", index);
     setItemIndex(index); // Toggle the isOpen state
   };
   const { resId } = useParams(); // Get the restaurant ID from the URL parameters
